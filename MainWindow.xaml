@@ -1,0 +1,78 @@
+﻿<Window x:Class="EducateApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EducateApp"
+        mc:Ignorable="d"
+        Title="EducateApp" Height="1080" Width="1920" Background="#D5FFEE">
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.189*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1">
+            <TextBlock
+                FontSize="64"
+                HorizontalAlignment="Center"
+                FontFamily="Segoe UI Symbol">
+                AcademiX
+            </TextBlock>
+            <Button
+                Background="#FFFFFF"
+                Foreground="#000000"
+                FontSize="32"
+                Content="Войти как Учитель"
+                Width="516"
+                Height="84"
+                BorderThickness="2"
+                BorderBrush="#00B960"
+                Margin="0 120 0 0">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button
+                Background="#FFFFFF"
+                Foreground="#000000"
+                FontSize="32"
+                Content="Войти как Ученик"
+                Width="516"
+                Height="84"
+                BorderThickness="2"
+                BorderBrush="#00B960"
+                Margin="0 67 0 0">     
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <TextBlock
+                FontSize="25"
+                HorizontalAlignment="Center"
+                FontFamily="Segoe UI Symbol"
+                Margin="0 20 0 0">
+                Еще не зарегистрированы?
+            </TextBlock>
+            <Button
+                Background="#FFFFFF"
+                Foreground="#000000"
+                FontSize="32"
+                Content="Регистрация"
+                Width="310"
+                Height="84"
+                BorderThickness="2"
+                BorderBrush="#00B960"
+                Margin="0 20 0 0">      
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
