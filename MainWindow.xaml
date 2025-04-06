@@ -3,79 +3,124 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EducateApp"
+        xmlns:local="clr-namespace:EducateApp" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="EducateApp" Height="1080" Width="1920" Background="#D5FFEE">
+        x:Name="window" Title="EducateApp" Height="1080" Width="1920" Background="#D5FFEE">
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.189*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.083*"></RowDefinition>
+            <RowDefinition Height="0.085*"></RowDefinition>
+            <RowDefinition Height="0.078*"></RowDefinition>
+            <RowDefinition Height="0.064*"></RowDefinition>
+            <RowDefinition Height="0.078*"></RowDefinition>
+            <RowDefinition Height="0.02*"></RowDefinition>
+            <RowDefinition Height="0.028*"></RowDefinition>
+            <RowDefinition Height="0.018*"></RowDefinition>
+            <RowDefinition Height="0.078*"></RowDefinition>
+            <RowDefinition Height="0.279*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1">
-            <TextBlock
-                FontSize="64"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.65*"></ColumnDefinition>
+            <ColumnDefinition Width="0.095*"></ColumnDefinition>
+            <ColumnDefinition Width="0.287*"></ColumnDefinition>
+            <ColumnDefinition Width="0.095*"></ColumnDefinition>
+            <ColumnDefinition Width="0.65*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        
+        <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <TextBlock 
                 HorizontalAlignment="Center"
+                VerticalAlignment="Top"
                 FontFamily="Segoe UI Symbol"
-                Text="AcademiX">
+                Text="AcademiX">    
             </TextBlock>
-            <Button
-                Background="#FFFFFF"
-                Foreground="#000000"
-                FontSize="32"
-                Content="Войти как Учитель"
-                Width="516"
-                Height="84"
-                BorderThickness="2"
-                BorderBrush="#00B960"
-                Margin="0 120 0 0"
-                Click="btnEnterAsTeacher_Click">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="15"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button
-                Background="#FFFFFF"
-                Foreground="#000000"
-                FontSize="32"
-                Content="Войти как Ученик"
-                Width="516"
-                Height="84"
-                BorderThickness="2"
-                BorderBrush="#00B960"
-                Margin="0 67 0 0"
-                Click="btnEnterAsStudent_Click">     
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="15"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <TextBlock
-                FontSize="25"
+        </Viewbox>
+        
+        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+            Background="#FFFFFF"
+            Foreground="#000000"
+            BorderThickness="2"
+            BorderBrush="#00B960"
+            Command="{Binding EnterAsTeacherCommand}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+            <Viewbox
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                MaxHeight="40">
+                <TextBlock 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Segoe UI Symbol"
+                    Text="Войти как Учитель">
+                </TextBlock>    
+            </Viewbox>
+        </Button>
+        
+        <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"
+            Background="#FFFFFF"
+            Foreground="#000000"
+            BorderThickness="2"
+            BorderBrush="#00B960"
+            Command="{Binding EnterAsStudentCommand}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+            <Viewbox
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                MaxHeight="40">
+                <TextBlock 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Segoe UI Symbol"
+                    Text="Войти как Ученик">
+                </TextBlock>
+            </Viewbox>
+        </Button>
+        
+        <Viewbox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3"
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch">
+            <TextBlock 
                 HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 FontFamily="Segoe UI Symbol"
-                Margin="0 20 0 0"
                 Text="Еще не зарегистрированы?">
             </TextBlock>
-            <Button
-                Background="#FFFFFF"
-                Foreground="#000000"
-                FontSize="32"
-                Content="Регистрация"
-                Width="310"
-                Height="84"
-                BorderThickness="2"
-                BorderBrush="#00B960"
-                Margin="0 20 0 0"
-                Click="btnRegistration_Click">      
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="15"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-        </StackPanel>
+        </Viewbox>
+        
+        <Button Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="1"
+            Background="#FFFFFF"
+            Foreground="#000000"
+            BorderThickness="2"
+            BorderBrush="#00B960"
+            Command="{Binding RegistrationCommand}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="15"/>
+                </Style>
+            </Button.Resources>
+            <Viewbox
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                MaxHeight="40">
+                <TextBlock 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Segoe UI Symbol"
+                    Text="Регистрация">
+                </TextBlock>
+            </Viewbox>
+        </Button>
     </Grid>
 </Window>
