@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,20 +8,98 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Xps;
 
 namespace EducateApp
 {
-    class ViewModel : INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
-        public ViewModel() 
+        private string? text;      // текст, введенный пользователем в поле
+        private string? fieldType; // тип поля: электронная почта, пароль, имя, фамилия и т д
+        private string? role;      // роль пользователя: учитель или ученик
+        public string? Text
         {
+            get => text;
+            set 
+            {
+                text = value;
+                OnPropertyChanged("Text");
+            }
+        }
+        public string? FieldType
+        {
+            get => fieldType;
+            set
+            {
+                fieldType = value;
+                OnPropertyChanged("FieldType");
+            }
+        }
+        public string? Role
+        {
+            get => role;
+            set 
+            {
+                role = value;
+                OnPropertyChanged("Role");
+            }
+        }
+       
+        
+        public RoutedCommand EnterCommand { get; private set; }
+        public RoutedCommand RegistrationCommand { get; private set; }
+
+        public ViewModel()
+        {
+            EnterCommand = new RoutedCommand();
+            CommandManager.RegisterClassCommandBinding(typeof(Window), new CommandBinding(EnterCommand, ExecuteEnterCommand));
+            RegistrationCommand = new RoutedCommand();
+            CommandManager.RegisterClassCommandBinding(typeof(Window), new CommandBinding(RegistrationCommand, ExecuteRegistrationCommand));
         }
 
-        private RelayCommand enterAsTeacherCommand;
+        private void ExecuteEnterCommand(object sender, ExecutedRoutedEventArgs e)
+        {
+            Role = e.Parameter?.ToString();
+            Console.WriteLine(Role); 
+
+            Window currentWindow = Application.Current.MainWindow;
+            Windows.LogInWindow newWindow = new Windows.LogInWindow();
+            newWindow.Show();
+            currentWindow.Close();
+        }
+        private void ExecuteRegistrationCommand(object sender, ExecutedRoutedEventArgs e)
+        {
+            Window currentWindow = Application.Current.MainWindow;
+            Windows.RegistrationWindow newWindow = new Windows.RegistrationWindow();
+            newWindow.Show();
+            currentWindow.Close();
+        }
+
+        // TODO: создать команду для регистрации и окно для регистрации
+       
+
+
+
+
+
+
+        /*private void EnterAsTeacher()
+        {
+            MessageBox.Show("Войти как Учитель");
+        }
+
+        private RelayCommand enterAsTeacherCmd;
+        public RelayCommand EnterAsTeacherCmd
+        {
+            get { return enterAsTeacherCmd; }
+        }
+
+        // private RelayCommand enterAsTeacherCommand;
         private RelayCommand enterAsStudentCommand;
         private RelayCommand registrationCommand;
         public HeightToFontSizeConverter HeightToFontSizeConverterObject { get; } = new HeightToFontSizeConverter();
-        public RelayCommand EnterAsTeacherCommand
+        /*public RelayCommand EnterAsTeacherCommand
         {
             get
             {
@@ -28,10 +107,11 @@ namespace EducateApp
                   (enterAsTeacherCommand = new RelayCommand(obj =>
                   {
                       MessageBox.Show("Вход Учителя");
+                      
                   }));
             }
-        }
-        public RelayCommand EnterAsStudentCommand
+        }*/
+        /*public RelayCommand EnterAsStudentCommand
         {
             get
             {
@@ -52,7 +132,7 @@ namespace EducateApp
                       MessageBox.Show("Регистрация");
                   }));
             }
-        }
+        }*/
 
 
         public event PropertyChangedEventHandler PropertyChanged;

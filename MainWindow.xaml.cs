@@ -17,7 +17,15 @@ namespace EducateApp
         public MainWindow()
         {
             InitializeComponent();
+            this.Left = 0;
+            this.Top = 0;
             DataContext = new ViewModel();
+        }
+
+        private void CommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Войти как Учитель");
+
         }
     }
 }
