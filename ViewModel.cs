@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Xps;
 
@@ -18,6 +19,7 @@ namespace EducateApp
         private string? text;      // текст, введенный пользователем в поле
         private string? fieldType; // тип поля: электронная почта, пароль, имя, фамилия и т д
         private string? role;      // роль пользователя: учитель или ученик
+
         public string? Text
         {
             get => text;
@@ -45,8 +47,7 @@ namespace EducateApp
                 OnPropertyChanged("Role");
             }
         }
-       
-        
+
         public RoutedCommand EnterCommand { get; private set; }
         public RoutedCommand RegistrationCommand { get; private set; }
 
@@ -76,66 +77,9 @@ namespace EducateApp
             currentWindow.Close();
         }
 
-        // TODO: создать команду для регистрации и окно для регистрации
-       
 
 
-
-
-
-
-        /*private void EnterAsTeacher()
-        {
-            MessageBox.Show("Войти как Учитель");
-        }
-
-        private RelayCommand enterAsTeacherCmd;
-        public RelayCommand EnterAsTeacherCmd
-        {
-            get { return enterAsTeacherCmd; }
-        }
-
-        // private RelayCommand enterAsTeacherCommand;
-        private RelayCommand enterAsStudentCommand;
-        private RelayCommand registrationCommand;
-        public HeightToFontSizeConverter HeightToFontSizeConverterObject { get; } = new HeightToFontSizeConverter();
-        /*public RelayCommand EnterAsTeacherCommand
-        {
-            get
-            {
-                return enterAsTeacherCommand ??
-                  (enterAsTeacherCommand = new RelayCommand(obj =>
-                  {
-                      MessageBox.Show("Вход Учителя");
-                      
-                  }));
-            }
-        }*/
-        /*public RelayCommand EnterAsStudentCommand
-        {
-            get
-            {
-                return enterAsStudentCommand ??
-                  (enterAsStudentCommand = new RelayCommand(obj =>
-                  {
-                      MessageBox.Show("Вход Ученика");
-                  }));
-            }
-        }
-        public RelayCommand RegistrationCommand
-        {
-            get
-            {
-                return registrationCommand ??
-                  (registrationCommand = new RelayCommand(obj =>
-                  {
-                      MessageBox.Show("Регистрация");
-                  }));
-            }
-        }*/
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)

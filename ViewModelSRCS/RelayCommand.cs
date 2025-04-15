@@ -1,37 +1,57 @@
-п»їusing System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Input;
 
-namespace EducateApp
+public class RelayCommand : ICommand
 {
-    public class RelayCommand : ICommand
+    private readonly Action<object> _execute;
+    private readonly Predicate<object> _canExecute;
+
+    /// <summary>
+    /// Создает новую команду, которая всегда может быть выполнена.
+    /// </summary>
+    /// <param name="execute">Логика выполнения.</param>
+    public RelayCommand(Action<object> execute) : this(execute, null)
     {
-        private Action<object> execute;
-        private Func<object, bool> canExecute;
+    }
 
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
-        }
+    /// <summary>
+    /// Создает новую команду.
+    /// </summary>
+    /// <param name="execute">Логика выполнения.</param>
+    /// <param name="canExecute">Логика, определяющая, может ли команда быть выполнена.</param>
+    public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+    {
+        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+        _canExecute = canExecute;
+    }
 
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            this.execute = execute;
-            this.canExecute = canExecute;
-        }
+    /// <summary>
+    /// Определяет, может ли команда быть выполнена в текущем состоянии.
+    /// </summary>
+    /// <param name="parameter">Данные, используемые командой.  Если команда не требует передачи данных, этот параметр может быть null.</param>
+    /// <returns>
+    /// true, если эту команду можно выполнить; в противном случае — false.
+    /// </returns>
+    public bool CanExecute(object parameter)
+    {
+        return _canExecute == null || _canExecute(parameter);
+    }
 
-        public bool CanExecute(object parameter)
-        {
-            return this.canExecute == null || this.canExecute(parameter);
-        }
+    /// <summary>
+    /// Происходит, когда изменения, влияющие на возможность выполнения команды, должны произойти.
+    /// </summary>
+    public event EventHandler CanExecuteChanged
+    {
+        add { CommandManager.RequerySuggested += value; }
+        remove { CommandManager.RequerySuggested -= value; }
+    }
 
-        public void Execute(object parameter)
-        {
-            this.execute(parameter);
-        }
+    /// <summary>
+    /// Выполняет логику команды.
+    /// </summary>
+    /// <param name="parameter">Данные, используемые командой.  Если команда не требует передачи данных, этот параметр может быть null.</param>
+    public void Execute(object parameter)
+    {
+        _execute(parameter);
     }
 }

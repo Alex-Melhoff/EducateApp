@@ -3,12 +3,185 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EducateApp.Windows"
+        xmlns:local="clr-namespace:EducateApp.Windows"  
+        xmlns:EducateApp="clr-namespace:EducateApp"  d:DataContext="{d:DesignInstance Type=EducateApp:ViewModel}"
         mc:Ignorable="d"
-        Title="LogInWindow" Height="1080" Width="1920"
+        Title="LogInWindow" Height="1080" Width="1920" Background="#D5FFEE"
         WindowStartupLocation="Manual"
-        WindowState="Maximized"> 
-    <Grid>
-        
+        WindowState="Maximized"
+		>
+	<Window.Resources>
+		<EducateApp:ViewModel x:Key="ViewModel"/>
+		<Style x:Key="CommonButtonStyle" TargetType="Button">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="Background" Value="#FFFFFF"/>
+			<Setter Property="Foreground" Value="#000000"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="BorderBrush" Value="#00B960"/>
+		</Style>
+		<Style x:Key="CommonViewboxStyle" TargetType="Viewbox">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="CommonTextBlockStyle" TargetType="TextBlock">
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+		</Style>
+		<Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Margin" Value="10 0 10 0" />
+			<Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+			<Setter Property="FontSize" Value="28"/> 
+			<Setter Property="BorderThickness" Value="2" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderBrush" Value="Transparent" />
+			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+			<Setter Property="OverridesDefaultStyle" Value="True"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="TextBox">
+						<Border Background="{TemplateBinding Background}"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}">
+							<ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Stretch"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="CustomPasswordBoxStyle" TargetType="PasswordBox">
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Margin" Value="10 0 10 0" />
+			<Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+			<Setter Property="FontSize" Value="32"/>
+			<Setter Property="MaxLength" Value="20"/>
+			<Setter Property="BorderThickness" Value="2" />
+			<Setter Property="Background" Value="Transparent" />
+			<Setter Property="BorderBrush" Value="Transparent" />
+			<Setter Property="FocusVisualStyle" Value="{x:Null}" />
+			<Setter Property="OverridesDefaultStyle" Value="True"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="PasswordBox">
+						<Border Background="{TemplateBinding Background}"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}">
+							<ScrollViewer x:Name="PART_ContentHost"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="CustomRectangleStyle" TargetType="Rectangle">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="Fill" Value="White"/>
+			<Setter Property="RadiusX" Value="15"/>
+			<Setter Property="RadiusY" Value="15"/>
+			<Setter Property="Stroke" Value="#00B960"/>
+			<Setter Property="StrokeThickness" Value="2"/>
+		</Style>
+		<Style x:Key="HintViewboxStyle" TargetType="Viewbox">
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="Margin" Value="10 5 0 5"/>
+		</Style>
+		<Style x:Key="HintLabelStyle" TargetType="Label">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+			<Setter Property="VerticalContentAlignment" Value="Stretch"/>
+			<Setter Property="Foreground" Value="#75000000"/>
+			<Setter Property="Background" Value="White"/>
+		</Style>
+	</Window.Resources>
+	
+	
+    <Grid ShowGridLines="False">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.166*"></RowDefinition>
+			<RowDefinition Height="0.072*"></RowDefinition>
+			<RowDefinition Height="0.066*"></RowDefinition>
+			<RowDefinition Height="0.078*"></RowDefinition>
+			<RowDefinition Height="0.021*"></RowDefinition>
+			<RowDefinition Height="0.078*"></RowDefinition>
+			<RowDefinition Height="0.037*"></RowDefinition>
+			<RowDefinition Height="0.078*"></RowDefinition>
+			<RowDefinition Height="0.404*"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.354*"></ColumnDefinition>
+			<ColumnDefinition Width="0.078*"></ColumnDefinition>
+			<ColumnDefinition Width="0.135*"></ColumnDefinition>
+			<ColumnDefinition Width="0.078*"></ColumnDefinition>
+			<ColumnDefinition Width="0.354*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+
+	<!--- Надпись "Вход" -->	
+		<Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+            Style="{StaticResource CommonViewboxStyle}">
+			<TextBlock
+                Style="{StaticResource CommonTextBlockStyle}"
+                Text="Вход">
+			</TextBlock>
+		</Viewbox>
+
+	<!--- Форма для электронной почты -->
+		<Rectangle Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+			Style="{StaticResource CustomRectangleStyle}">
+		</Rectangle>
+		<Viewbox x:Name="EmailTB_Hint" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+			Style="{StaticResource HintViewboxStyle}">
+			<Label x:Name="EmailTB_Hint_Label"
+				Style="{StaticResource HintLabelStyle}"
+				Content="Электронная почта"/>
+		</Viewbox>
+		<TextBox x:Name="EmailTB" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+			GotFocus="TextBox_GotFocus"
+			LostFocus="TextBox_LostFocus"
+            TextChanged="TextBox_TextChanged"
+			Style="{StaticResource CustomTextBoxStyle}"
+			Tag="EmailTB_Hint_Label">
+		</TextBox>
+
+
+	<!--- Форма для пароля -->
+		<Rectangle Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"
+			Style="{StaticResource CustomRectangleStyle}">
+		</Rectangle>
+		
+		<PasswordBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"
+			GotFocus="PasswordBox_GotFocus"
+			LostFocus="PasswordBox_LostFocus"
+			Style="{StaticResource CustomPasswordBoxStyle}"
+			Tag="PasswordTB_Hint_Label">
+		</PasswordBox>
+		
+		<Viewbox x:Name="PasswordTB_Hint" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"
+			Style="{StaticResource HintViewboxStyle}">
+			<Label x:Name="PasswordTB_Hint_Label"
+				Style="{StaticResource HintLabelStyle}"
+				Content="Пароль"/>
+		</Viewbox>
+
+	<!--- Кнопка "Войти" -->
+		<Button Grid.Row="7" Grid.Column="2"
+            Style="{StaticResource CommonButtonStyle}"
+			Command="{Binding RegistrationCommand}">
+			<Button.Resources>
+				<Style TargetType="Border">
+					<Setter Property="CornerRadius" Value="15"/>
+				</Style>
+			</Button.Resources>
+			<Viewbox
+                Style="{StaticResource CommonViewboxStyle}"
+                MaxHeight="40">
+				<TextBlock
+                    Style="{StaticResource CommonTextBlockStyle}"
+                    Text="Войти">
+				</TextBlock>
+			</Viewbox>
+		</Button>
     </Grid>
 </Window>
