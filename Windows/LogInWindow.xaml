@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EducateApp.Windows"  
-        xmlns:EducateApp="clr-namespace:EducateApp"  d:DataContext="{d:DesignInstance Type=EducateApp:ViewModel}"
+        xmlns:EducateApp="clr-namespace:EducateApp"  
         mc:Ignorable="d"
         Title="LogInWindow" Height="1080" Width="1920" Background="#D5FFEE"
         WindowStartupLocation="Manual"
