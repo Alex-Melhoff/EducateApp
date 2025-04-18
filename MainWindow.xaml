@@ -16,6 +16,25 @@
             <Setter Property="Foreground" Value="#000000"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="BorderBrush" Value="#00B960"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+					    <Border Background="{TemplateBinding Background}"
+							    BorderBrush="{TemplateBinding BorderBrush}"
+							    BorderThickness="{TemplateBinding BorderThickness}">
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"/>
+					    </Border>
+					    <ControlTemplate.Triggers>
+						    <Trigger Property="IsMouseOver" Value="True">
+							    <Setter Property="Background" Value="#00FFB3"/>
+							    <Setter Property="Foreground" Value="#FFFFFF"/>
+						    </Trigger>
+					    </ControlTemplate.Triggers>
+				</ControlTemplate>
+				</Setter.Value>
+			</Setter>
         </Style>
         <Style x:Key="CommonViewboxStyle" TargetType="Viewbox">
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -49,7 +68,7 @@
             <ColumnDefinition Width="0.65*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-	<!--- Надпись "AcadeiX" -->
+	<!--- Надпись "AcademiX" -->
         <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
             Style="{StaticResource CommonViewboxStyle}">
             <TextBlock 

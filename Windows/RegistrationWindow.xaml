@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EducateApp.Windows" d:DataContext="{d:DesignInstance Type=EducateApp:ViewModel}"
+        xmlns:local="clr-namespace:EducateApp.Windows" 
         mc:Ignorable="d"
         Title="RegistrationWindow" Height="1080" Width="1920" Background="#D5FFEE" 
 		WindowStartupLocation="Manual"
@@ -25,6 +25,25 @@
 			<Setter Property="Foreground" Value="#000000"/>
 			<Setter Property="BorderThickness" Value="2"/>
 			<Setter Property="BorderBrush" Value="#00B960"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}"
+							    BorderBrush="{TemplateBinding BorderBrush}"
+							    BorderThickness="{TemplateBinding BorderThickness}">
+							<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter Property="Background" Value="#00FFB3"/>
+								<Setter Property="Foreground" Value="#FFFFFF"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
 		</Style>
 		<Style x:Key="FormTextBoxStyle" TargetType="TextBox">
 			<Setter Property="VerticalContentAlignment" Value="Center" />

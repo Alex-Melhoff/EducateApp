@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Xps;
 
 namespace EducateApp
@@ -19,6 +20,7 @@ namespace EducateApp
         private string? text;      // текст, введенный пользователем в поле
         private string? fieldType; // тип поля: электронная почта, пароль, имя, фамилия и т д
         private string? role;      // роль пользователя: учитель или ученик
+        
 
         public string? Text
         {
@@ -47,6 +49,7 @@ namespace EducateApp
                 OnPropertyChanged("Role");
             }
         }
+        
 
         public RoutedCommand EnterCommand { get; private set; }
         public RoutedCommand RegistrationCommand { get; private set; }
@@ -57,6 +60,7 @@ namespace EducateApp
             CommandManager.RegisterClassCommandBinding(typeof(Window), new CommandBinding(EnterCommand, ExecuteEnterCommand));
             RegistrationCommand = new RoutedCommand();
             CommandManager.RegisterClassCommandBinding(typeof(Window), new CommandBinding(RegistrationCommand, ExecuteRegistrationCommand));
+            
         }
 
         private void ExecuteEnterCommand(object sender, ExecutedRoutedEventArgs e)
